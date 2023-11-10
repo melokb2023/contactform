@@ -78,20 +78,13 @@
 
                                 
 
-<<<<<<< HEAD
-                                    if(isset($_GET['search']) || isset($_GET['category']) )
+                      if(isset($_GET['search']) || isset($_GET['category']) )
                                     {
                                         $filtervalues = $_GET['search'];
                                         $filtercategory = $_GET['category'];
                                         $query = "SELECT * FROM contactlist WHERE CONCAT(email,category) LIKE '%$filtervalues%' ";
                                         $query = "SELECT * FROM contactlist WHERE CONCAT(email,category) LIKE '%$filtercategory%' ";
-=======
-                                    if(isset($_GET['search']) && isset($_GET['category']))
-                                    {
-                                        $filtervalues = $_GET['search'];
-                                        $filtercategory = $_GET['category'];
-                                        $query = "SELECT * FROM contactlist WHERE CONCAT(category,email) LIKE '%$filtervalues%' ";
->>>>>>> 5b963fe0a36886f5b573c80fea1dc1f52bf86421
+
                                         $query_run = mysqli_query($con, $query);
 
                                         if(mysqli_num_rows($query_run) > 0)
