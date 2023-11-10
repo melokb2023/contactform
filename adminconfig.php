@@ -8,7 +8,7 @@
     <title>Funda Of Web IT</title>
 </head>
 <body>
-
+<a href="logout.php"><i class="fa fa-fw fa-user"></i> Log Out</a> 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -16,26 +16,22 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-7">
-
+                               
                                 <form action="" method="GET">
                                     <div class="input-group mb-3">
-                                        <input type="text" name="search" required value="<?php if(isset($_GET['search'])){echo $_GET['search']; } ?>" class="form-control" placeholder="Search data">
-                                        <button type="submit" class="btn btn-primary">Search</button>
+                                        <input type="text" name="search" required value="<?php if(isset($_GET['search'])){echo $_GET['search'];} ?>" class="form-control" placeholder="Search data">
+                                        &nbsp;
+                                        &nbsp;
+                                        <select name ="category" <?php if(isset($_GET['category'])){echo $_GET['category'];} ?> class="form-select">
+                                  <option value="">Select Status: </option>
+                                  <option value="Product Info"> <? isset($_GET['category']) == true ? ($_GET['category'] =='Product Info' ? 'selected':'') :''?>>  Product Info</option>
+                                  <option value="Complain" <? isset($_GET['category']) == true ? ($_GET['category'] =='Complain' ? 'selected':'') :''?>> Complain </option>
+                                 </select>
+                                 &nbsp;
+                                 &nbsp;
+                                 <button type="submit" class="btn btn-primary">Search Email</button>
                                     </div>
                                 </form>
-                                <form action="" method="GET">
-                                <div class="row">
-                                <div class="col-md-4">
-                                <select name ="category" class="form-select">
-                                  <option value="">Select Status: </option>
-                                  <option value="Product Info" <? isset($_GET['category']) == true ? ($_GET['category'] =='Product Info' ? 'selected':'') :''?>> Product Info</option>
-                                  <option value="Complain" <? isset($_GET['category']) == true ? ($_GET['category'] =='Complain' ? 'selected':'') :''?>> Complain </option>
-                                  </select>
-                                    </select>
-
-</div>
-</div>
-</form>
 
 
 
@@ -64,10 +60,13 @@
                                 <?php 
                                     $con = mysqli_connect("localhost","root","","contactform");
 
-                                    if(isset($_GET['search']))
+                                
+
+                                    if(isset($_GET['search']) && isset($_GET['category']))
                                     {
                                         $filtervalues = $_GET['search'];
-                                        $query = "SELECT * FROM contactlist WHERE CONCAT(firstname,lastname,email) LIKE '%$filtervalues%' ";
+                                        $filtercategory = $_GET['category'];
+                                        $query = "SELECT * FROM contactlist WHERE CONCAT(category,email) LIKE '%$filtervalues%' ";
                                         $query_run = mysqli_query($con, $query);
 
                                         if(mysqli_num_rows($query_run) > 0)
@@ -79,7 +78,12 @@
                                                     <td><?= $items['id']; ?></td>
                                                     <td><?= $items['firstname']; ?><?= $items['lastname']; ?></td>
                                                     <td><?= $items['email']; ?></td>
-                                                    <td><?= $items['dateandtime']; ?></td>
+                                                    <td>
+                                                    <?php
+echo  date("Y/m/d") . "<br>";
+?> </td>
+<td></td>
+                                            
                                                     </tr>
                                                 <?php
                                             }
