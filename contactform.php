@@ -23,13 +23,13 @@
 
 				<!-- form starting -->
 				<form class="form-horizontal" method="post"
-					action="contact.php">
+				      action="save.php">
 					<div class="form-group">
 						<div class="col-sm-12">
 							<!-- name -->
 							<input type="text" class="form-control"
 								id="name" placeholder="FIRST NAME"
-								name="name" value="" />
+								name="firstname" value="" />
 						</div>
 					</div>
 
@@ -38,7 +38,7 @@
 							<!-- name -->
 							<input type="text" class="form-control"
 								id="name" placeholder="LAST NAME"
-								name="name" value="" />
+								name="lastname" value="" />
 						</div>
 					</div>
 
@@ -71,7 +71,7 @@
 
 					<button class="btn btn-primary send-button"
 							id="submit" type="submit" value="SEND">
-						<i class="fa fa-paper-plane"></i>
+							<i class="fa fa-paper-plane"></i>
 						<span class="send-text">SUBMIT</span>
 					</button>
 				</form>
