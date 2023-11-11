@@ -17,38 +17,24 @@
                         <div class="row">
                             <div class="col-md-7">
                                
-                                <form action="" method="GET">
+                                <form action=""  method="GET">
                                     <div class="input-group mb-3">
-                                        <input type="text" name="search" required value="<?php if(isset($_GET['search'])){echo $_GET['search'];} ?>" class="form-control" placeholder="Search data">
-<<<<<<< HEAD
-                                        <button type="submit" class="btn btn-primary">Search Email</button>
+                                        <input type="text" required name="search" value="<?php if(isset($_GET['search'])){echo $_GET['search'];} ?>" class="form-control" placeholder="Search data">
                                         &nbsp;
-                                        &nbsp;
-                            <select name ="category" <?php if(isset($_GET['category'])){echo $_GET['category'];} ?> class="form-select">
+                                        &nbsp;    
+                                        <select name ="category" <?php if(isset($_GET['category'])){echo $_GET['category'];} ?> class="form-select">
                             <option value="">Select Status: </option>
                                   <option value="Product Info"> <? isset($_GET['category']) == true ? ($_GET['category'] =='Product Info' ? 'selected':'') :''?>>  Product Info</option>
                                   <option value="Complain" <? isset($_GET['category']) == true ? ($_GET['category'] =='Complain' ? 'selected':'') :''?>> Complain </option>
                                </select>
-                               <button type="submit" class="btn btn-primary">Filter Category</button>        
-                                    </div>
-                                </form>
+                               
+                              <button type="submit" class="btn btn-primary">Search Email</button> 
+                                     </div>
+                            </div>  
+</form>  
+ 
  
                                 
-=======
-                                        &nbsp;
-                                        &nbsp;
-                                        <select name ="category" <?php if(isset($_GET['category'])){echo $_GET['category'];} ?> class="form-select">
-                                  <option value="">Select Status: </option>
-                                  <option value="Product Info"> <? isset($_GET['category']) == true ? ($_GET['category'] =='Product Info' ? 'selected':'') :''?>>  Product Info</option>
-                                  <option value="Complain" <? isset($_GET['category']) == true ? ($_GET['category'] =='Complain' ? 'selected':'') :''?>> Complain </option>
-                                 </select>
-                                 &nbsp;
-                                 &nbsp;
-                                 <button type="submit" class="btn btn-primary">Search Email</button>
-                                    </div>
-                                </form>
-
->>>>>>> 5b963fe0a36886f5b573c80fea1dc1f52bf86421
 
 
                             </div>
@@ -78,17 +64,17 @@
 
                                 
 
-                      if(isset($_GET['search']) || isset($_GET['category']) )
+                      if(isset($_GET['search']) && isset($_GET['category']) )
                                     {
                                         $filtervalues = $_GET['search'];
                                         $filtercategory = $_GET['category'];
-                                        $query = "SELECT * FROM contactlist WHERE CONCAT(email,category) LIKE '%$filtervalues%' ";
-                                        $query = "SELECT * FROM contactlist WHERE CONCAT(email,category) LIKE '%$filtercategory%' ";
-
+                                        $query = "SELECT * FROM contactlist WHERE CONCAT(email,category) LIKE '%$filtervalues%' '%$filtercategory%' ";
                                         $query_run = mysqli_query($con, $query);
-
+                                        
+                                        
                                         if(mysqli_num_rows($query_run) > 0)
                                         {
+            
                                             foreach($query_run as $items)
                                             {
                                                 ?>
@@ -96,27 +82,24 @@
                                                     <td><?= $items['id']; ?></td>
                                                     <td><?= $items['firstname']; ?><?= $items['lastname']; ?></td>
                                                     <td><?= $items['email']; ?></td>
+                                                    <td> <?php echo  date("Y/m/d") . "<br>";?> </td>
                                                     <td>
-<<<<<<< HEAD
-                                                    <?php echo  date("Y/m/d") . "<br>";?> </td>
-                                                    <td> 
-                                                        <a class="btn btn-info" placeholder="VIEW" href="view.php?id=<?php echo $row['id']; ?> 
-                                                           VIEW
-                                            </button>
+                                                        <a href= "view.php?id=<?=$items['id']; ?>">View
                                                     </td>
                                                 </tr>
-                                         
-=======
-                                                    <?php
-echo  date("Y/m/d") . "<br>";
-?> </td>
-<td></td>
-                                            
-                                                    </tr>
->>>>>>> 5b963fe0a36886f5b573c80fea1dc1f52bf86421
+                                    
+                                        
+                                                
+                                                
                                                 <?php
                                             }
                                         }
+
+                                        
+
+                                        
+                                    
+                                     
                                         else
                                         {
                                             ?>
@@ -125,8 +108,17 @@ echo  date("Y/m/d") . "<br>";
                                                 </tr>
                                             <?php
                                         }
+
+
+
                                     }
+                            
+
+
                                 ?>
+                                
+
+                                
 
 
                             </tbody>
