@@ -23,7 +23,7 @@
                                         &nbsp;
                                         &nbsp;    
                                         <select name ="category" <?php if(isset($_GET['category'])){echo $_GET['category'];} ?> class="form-select">
-                            <option value="">Select Status: </option>
+                            <option value="">Select Category: </option>
                                   <option value="Product Info"> <? isset($_GET['category']) == true ? ($_GET['category'] =='Product Info' ? 'selected':'') :''?>>  Product Info</option>
                                   <option value="Complain" <? isset($_GET['category']) == true ? ($_GET['category'] =='Complain' ? 'selected':'') :''?>> Complain </option>
                                </select>
